@@ -4,7 +4,7 @@ import colorama
 from colorama import Fore, Style
 
 colorama.init()
-# Lista contendo as mensagens de status do nível do reservatório
+# Lista com os níveis e as mensagens de status do reservatório.
 niveis = [
     (1, "Muito Baixo (CRÍTICO)"),
     (2, "Baixo"),
@@ -13,8 +13,8 @@ niveis = [
     (5, "Muito Alto (ALERTA)"),
 ]
 
-# função para definir a cor do texto com base no nível
-def definir_cor(nivel):
+# Define a cor do texto com base no nível.
+def definir_cor(nivel: int) -> str:
     cores = {
         1: Fore.RED,
         2: Fore.YELLOW,
@@ -24,20 +24,17 @@ def definir_cor(nivel):
     }
     return cores[nivel]
 
-# Loop principal do programa e saida de dados
+print("=" * 60)
+print("SISTEMA DE MONITORAMENTO DE NÍVEL DO RESERVATÓRIO".center(60))
+print("=" * 60)
+print("Para encerrar o monitoramento, pressione Ctrl+C.")
+
 try:
     while True:
-        print("\n\n" + "=" * 60)
-        print("SISTEMA DE MONITORAMENTO DE NÍVEL DO RESERVATÓRIO".center(60))
-        print("=" * 60)
-# escolhe aleatoriamente um nível de status do reservatório
+        # Escolhe aleatoriamente um nível de status do reservatório.
         numero, descricao = random.choice(niveis)
         cor = definir_cor(numero)
-        print(f"Status do nivel do reservatório: {cor}{descricao}{Style.RESET_ALL}")
+        print(f"Status do nível do reservatório: {cor}{descricao}{Style.RESET_ALL}")
         time.sleep(10)
-# Mensagem de encerramento do monitoramento
-        print("\n"*2 + "=" * 60)
-        print("Caso deseje encerrar o monitoramento, pressione Ctrl+C.".center(60))
-        print("=" * 60)
 except KeyboardInterrupt:
-    print("\nMonitoramento Encerrado.")
+    print("\nMonitoramento encerrado.")
